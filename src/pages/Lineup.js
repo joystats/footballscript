@@ -8,7 +8,8 @@ class Lineup extends Component{
 		super(props)
 		this.state={
             data:null,
-            team:null
+            team:null,
+            loading:true
 		}
 	}
 	componentDidMount(){
@@ -36,13 +37,16 @@ class Lineup extends Component{
 				}
 			}
           )
-         
-        if(response.data){
+        if(response.data.api.results>0){
             this.setState({
                 data:response.data
             })
             sessionStorage.setItem("footballapi_lineup_"+id,JSON.stringify(response.data))
         }
+        this.setState({
+            loading:false
+        })
+        
     }
     handleClick() {
         this.props.history.goBack()
@@ -51,8 +55,17 @@ class Lineup extends Component{
 		return (
 			<>
                 {
-                    !this.state.data &&
-                    <h3>LOADING...</h3>
+                    this.state.loading===true?
+                     <h3>LOADING...</h3>
+                     :
+                     (
+                        <>
+                            <p className="bread">
+                            <button onClick={()=>this.handleClick()}> &larr; ย้อนกลับ</button>
+                            </p>  
+                            <p>รออัพเดทข้อมูล ประมาณ 20-40 นาทีก่อนแข่ง</p>
+                        </>
+                     )
                 }
                 {
                     this.state.data &&

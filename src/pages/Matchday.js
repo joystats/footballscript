@@ -82,7 +82,7 @@ class Match extends Component{
 			<>
                 {
                     !this.state.data &&
-                    <h3>LOADING...{this.state.matchDay}</h3>
+                    <h3>กำลังดึงข้อมูล...{this.state.matchDay}</h3>
                 }
                 {
                     this.state.data &&
