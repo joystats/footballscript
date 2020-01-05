@@ -78,7 +78,7 @@ class Topscorer extends Component{
                                                     <td>{index+1}</td>
                                                     <td className="left">{item.player_name}</td>
                                                     <td>{item.position}</td>
-                                                    <td>
+                                                    <td className="left">
                                                         <img alt="home" src={`https://media.api-football.com/teams/${item.team_id}.png`} style={{width:'25px'}}/>
                                                         {item.team_name}
                                                     </td>
